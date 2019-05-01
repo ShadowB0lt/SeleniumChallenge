@@ -38,8 +38,17 @@ public class PracticeFormPageTest {
         Assert.assertEquals(isDisplayed,true);
     }
 
-    //@Test
-    //public
+    @Test
+    public void FirstTextField()
+    {
+        Assert.assertEquals("Hello",toolSQAWebsite.practiceFormPage().goToPracticeFormPage().inputFirstName("Hello").getFirstNameTextBox());
+    }
+
+    @Test
+    public void LastTextField()
+    {
+        Assert.assertEquals("jb skj bgsf",toolSQAWebsite.practiceFormPage().goToPracticeFormPage().inputLastName("jb skj bgsf").getLastNameTextBox());
+    }
 
 
 }

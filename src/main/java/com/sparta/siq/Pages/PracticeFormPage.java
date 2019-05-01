@@ -15,6 +15,8 @@ public class PracticeFormPage {
     private final By linkTestID = By.linkText("Link Test");
     private final String linkTestURL = "https://www.toolsqa.com/automation-practice-table/";
     private final By genderName = By.name("sex");
+    private final By firstNameField = By.name("firstname");
+    private final By lastNameField = By.name("lastname");
     //private final
 
     public PracticeFormPage(WebDriver driver)
@@ -56,19 +58,41 @@ public class PracticeFormPage {
         return driver.findElement(element);
     }
 
-    //Get
-    private void getSexElements()
+    public PracticeFormPage inputFirstName(String firstName)
     {
-        //Arraylist for storing all radio button values
-        ArrayList<String> genderRadioElements = new ArrayList<>();
+        driver.findElement(firstNameField).sendKeys(firstName);
+        return this;
+    }
+    public PracticeFormPage inputLastName(String lastName)
+    {
+        driver.findElement(lastNameField).sendKeys(lastName);
+        return this;
+    }
+
+    public String getFirstNameTextBox()
+    {
+        return driver.findElement(firstNameField).getAttribute("value");
+    }
+
+    public String getLastNameTextBox()
+    {
+        return driver.findElement(lastNameField).getAttribute("value");
+    }
 
 
-        //Add each value from form into Arraylist
-//        for(WebElement genderElements : driver.findElement(genderName).getAttribute("value"))
+    //Get
+//    private void getSexElements()
+//    {
+//        //Arraylist for storing all radio button values
+//        ArrayList<String> genderRadioElements = new ArrayList<>();
+//
+//
+////        Add each value from form into Arraylist
+//        for(WebElement genderElements : driver.findElement(genderName))
 //        {
 //
 //        }
-    }
+//    }
 
 
 

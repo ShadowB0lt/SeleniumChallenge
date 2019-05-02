@@ -1,9 +1,10 @@
 package com.sparta.siq;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class PracticeFormPageTest {
 
@@ -12,8 +13,14 @@ public class PracticeFormPageTest {
     @BeforeClass
     public static void setup()
     {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\SIqbal\\Documents\\chromedriver_win32\\chromedriver.exe");
-        toolSQAWebsite = new ToolSQAWebsite(new ChromeDriver());
+        //Firefox setup for mac
+        System.setProperty("webdriver.gecko.driver","resources/geckodriver");
+        System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+        toolSQAWebsite = new ToolSQAWebsite(new FirefoxDriver());
+        //Windows setup for chrome
+        //System.setProperty("webdriver.chrome.driver","C:\\Users\\SIqbal\\Documents\\chromedriver_win32\\chromedriver.exe");
+        //toolSQAWebsite = new ToolSQAWebsite(new ChromeDriver());
+
         toolSQAWebsite.practiceFormPage().goToPracticeFormPage();
     }
 
@@ -48,6 +55,38 @@ public class PracticeFormPageTest {
     public void LastTextField()
     {
         Assert.assertEquals("jb skj bgsf",toolSQAWebsite.practiceFormPage().goToPracticeFormPage().inputLastName("jb skj bgsf").getLastNameTextBox());
+    }
+
+    @Test
+    public void GenderRadioButtonSize()
+    {
+
+        Assert.assertEquals(2,toolSQAWebsite.practiceFormPage().getGenderElements().size());
+
+    }
+
+    @Test
+    public void checkIfChosenRadioButtonIsSelected()
+    {
+
+        toolSQAWebsite.practiceFormPage().selectGender("Female");
+        Assert.assertTrue(toolSQAWebsite.practiceFormPage().getSelectedGenderRadioButton("Female"));
+    }
+
+    @Test
+    public void checkChosenExperienceRadioButtonCheck()
+    {
+        toolSQAWebsite.practiceFormPage().selectExperienceButton("3");
+        Assert.assertTrue(toolSQAWebsite.practiceFormPage().getSelectedExperienceButton("3"));
+    }
+
+
+
+    @AfterClass
+    public static void teardown()
+    {
+       // toolSQAWebsite.TimeWait(5);
+        //toolSQAWebsite.teardown();
     }
 
 

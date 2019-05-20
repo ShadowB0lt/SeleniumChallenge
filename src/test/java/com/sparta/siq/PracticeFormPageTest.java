@@ -61,7 +61,7 @@ public class PracticeFormPageTest {
     public void GenderRadioButtonSize()
     {
 
-        Assert.assertEquals(2,toolSQAWebsite.practiceFormPage().getGenderElements().size());
+        Assert.assertEquals(2,toolSQAWebsite.practiceFormPage().goToPracticeFormPage().getGenderElements().size());
 
     }
 
@@ -69,7 +69,7 @@ public class PracticeFormPageTest {
     public void checkIfChosenRadioButtonIsSelected()
     {
 
-        toolSQAWebsite.practiceFormPage().selectGender("Female");
+        toolSQAWebsite.practiceFormPage().goToPracticeFormPage().selectGender("Female");
         Assert.assertTrue(toolSQAWebsite.practiceFormPage().getSelectedGenderRadioButton("Female"));
     }
 
@@ -81,12 +81,11 @@ public class PracticeFormPageTest {
     }
 
 
-
     @AfterClass
     public static void teardown()
     {
-       // toolSQAWebsite.TimeWait(5);
-        //toolSQAWebsite.teardown();
+        toolSQAWebsite.TimeWait(5);
+        toolSQAWebsite.teardown();
     }
 
 
